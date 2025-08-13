@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Демо приложение</title>
+    <style>
+        .container {
+          column-count: 3;
+        }
+    </style>
+</head>
+<body>
+<h1> Здравствуйте, {{ request.bitrix_user.first_name }} {{ request.bitrix_user.last_name}}</h1>
+<a href="{% url 'import' %}"><button>Импортировать</button></a>
+<a href="{% url 'export' %}"><button>Экспортировать</button></a>
+</body>
+<script src="//api.bitrix24.com/api/v1/"></script>
+</html>
