@@ -17,28 +17,24 @@ def create_filter(data,contact_fields):
 def import_contacts(request):
     user = request.bitrix_user_token
     form = ImportContact(request.POST,request.FILES)
-    context = []
-    res_context = []
     companies = user.call_list_method('crm.company.list', fields={'select': ['ID', 'TITLE']})
     contacts = user.call_list_method('crm.contact.list',fields={'select': ['ID', 'NAME', 'LAST_NAME', 'EMAIL', 'COMPANY_ID', 'PHONE']})
     print(len(contacts))
     phones = [contact_from_contacts['PHONE'][0]['VALUE'] for contact_from_contacts in contacts]
     phones_and_ids = {contact['PHONE'][0]['VALUE']:contact['ID'] for contact in contacts}
     print(phones_and_ids)
-    result_struct = {}
     for_batch_add = []
     for_batch_update = []
     if request.method=='POST':
         if form.is_valid():
             data = form.cleaned_data
-            reader = get_file_handler(data['file']).read(data['file']).to_dict('records')
+            reader = get_file_handler(data['file']).read(data['file'])
             print(reader)
-
             print(len(contacts))
             for row in reader:
                 row['COMPANY_ID']=[company['ID'] for company in companies if company['TITLE']==row['COMPANY_NAME']]
-                context.append(row)
-            for index,contact in enumerate(context):
+            print(reader)
+            for index,contact in enumerate(reader):
                 if '+'+str(contact['PHONE']) in phones:
                     for_batch_update.append((f'contact_{index}','crm.contact.update',{'id':f'{phones_and_ids['+'+str(contact['PHONE'])]}','fields':{
                     'NAME':contact['NAME'],

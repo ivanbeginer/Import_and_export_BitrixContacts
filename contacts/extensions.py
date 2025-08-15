@@ -4,7 +4,6 @@ import pandas as pd
 from django.http import FileResponse
 class FileFormat(ABC):
     def __init__(self):
-
         self.upload_dir = 'files'
     def upload(self,file):
         file_path = os.path.join(self.upload_dir, file.name)
@@ -20,8 +19,7 @@ class FileFormat(ABC):
         pass
 class FileCSV(FileFormat):
     def read(self,file):
-        reader = pd.read_csv(self.upload(file),encoding='windows-1251',sep=';')
-
+        reader = pd.read_csv(self.upload(file),encoding='windows-1251',sep=';').to_dict('records')
         return reader
 
     def write(self,data,name):

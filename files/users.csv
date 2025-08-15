@@ -1,5 +1,5 @@
 NAME;LAST_NAME;EMAIL;PHONE;COMPANY_NAME
-Иван;Иванов;ivan.ivanov@example.com;79161234567;IT-solution
+Иван;Петров;ivan.ivanov@example.com;79161234567;IT-solution
 Мария;Петрова;maria.petrova@example.com;79261234568;Компания чемпионов
 Алексей;Сидоров;alex.sidorov@example.com;79361234569;Супер битрикс
 Елена;Кузнецова;elena.kuznetsova@example.com;79461234570;IT-solution
@@ -11,7 +11,7 @@ NAME;LAST_NAME;EMAIL;PHONE;COMPANY_NAME
 Наталья;Волкова;natalia.volkova@example.com;79061234576;IT-solution
 Михаил;Лебедев;mikhail.lebedev@example.com;79161234577;Компания чемпионов
 Екатерина;Семенова;ekaterina.semenova@example.com;79261234578;Супер битрикс
-Артем;Павлов;artem.pavlov@example.com;79361234579;IT-solution
+Артем;Павлов;artem.pavlov@example.com;79361234579;Компания чемпионов
 Юлия;Фролова;yulia.frolova@example.com;79461234580;Компания чемпионов
 Александр;Николаев;alexandr.nikolaev@example.com;79561234581;Супер битрикс
 Татьяна;Орлова;tatiana.orlova@example.com;79661234582;IT-solution
@@ -54,3 +54,7 @@ NAME;LAST_NAME;EMAIL;PHONE;COMPANY_NAME
 Руслан;Терентьев;ruslan.terentiev@example.com;79361234619;Компания чемпионов
 Алла;Коновалова;alla.konovalova@example.com;79461234620;Супер битрикс
 Джон;Джонов;jon@gmail.com;79841233212;IT-solution
+Джек;Джеков;jack@gmail.com;79814355643;IT-solution
+Майкл;Майклов;mikle@gmail.com;79814355903;IT-solution
+Сергей;Майклов;mikle@gmail.com;79004355903;IT-solution
+Сергей;Джордан;sergey@gmail.com;79114355903;IT-solution
