@@ -1,6 +1,7 @@
 import os
 from abc import ABC, abstractmethod
 import pandas as pd
+from django.http import FileResponse
 class FileFormat(ABC):
     def __init__(self):
 
@@ -15,7 +16,7 @@ class FileFormat(ABC):
     def read(self,file):
         pass
     @abstractmethod
-    def write(self,data):
+    def write(self,data,name):
         pass
 class FileCSV(FileFormat):
     def read(self,file):
@@ -23,17 +24,20 @@ class FileCSV(FileFormat):
 
         return reader
 
-    def write(self,data):
+    def write(self,data,name):
         df = pd.DataFrame(data)
-        df.to_csv(f'{self.upload_dir}/export.csv',index=False,sep=';',encoding='windows-1251')
+        df.to_csv(f'{self.upload_dir}/{name}',index=False,sep=';',encoding='utf-8-sig')
+        return FileResponse(open(f'{self.upload_dir}/{name}','rb'),as_attachment=True,filename=name)
 
 class FileXLSX(FileFormat):
     def read(self,file):
         reader = pd.read_excel(self.upload(file)).to_dict()
         return reader
-    def write(self,data):
+    def write(self,data,name):
         df = pd.DataFrame(data)
-        df.to_excel('export.xlsx',sheet_name='Contacts',index=False)
+        df.to_excel(f'{self.upload_dir}/{name}',sheet_name='Contacts',index=False)
+        return FileResponse(open(f'{self.upload_dir}/{name}','rb'), as_attachment=True, filename=name)
+
 
 file_handler_dict = {
     'xlsx':FileXLSX,
