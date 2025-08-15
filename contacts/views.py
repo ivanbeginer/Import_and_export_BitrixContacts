@@ -66,6 +66,7 @@ def export_contacts(request):
     companies = user.call_list_method('crm.company.list', fields={'select': ['ID', 'TITLE']})
     contact_fields = list(user.call_api_method('crm.contact.fields')['result'].keys())
 
+
     if request.method == 'POST':
         if form.is_valid():
             data = form.cleaned_data
